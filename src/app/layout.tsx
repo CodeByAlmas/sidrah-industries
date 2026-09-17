@@ -22,8 +22,16 @@ export const viewport = {
   themeColor: "#141613",
 };
 
+const getBaseUrl = () => {
+  try {
+    return new URL(site.siteUrl || "https://www.sidrahindustries.com");
+  } catch {
+    return new URL("https://www.sidrahindustries.com");
+  }
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL(site.siteUrl),
+  metadataBase: getBaseUrl(),
   title: {
     default: `${site.name} — industrial woven fabric & multiple-ply yarn`,
     template: `%s — ${site.name}`,
