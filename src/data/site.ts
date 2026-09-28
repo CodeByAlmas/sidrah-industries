@@ -6,21 +6,36 @@
 export const site = {
   name: "Sidrah Industries",
   legalName: "Sidrah Industries",
-  tagline: "Industrial woven fabric and multiple-ply yarn, made in Unnao.",
+  tagline: "Industrial woven fabric and multiple-ply yarn, made in Unnao & Kanpur.",
   description:
-    "Sidrah Industries manufactures heavy canvas, filter cloth, tarpaulin, tents and multiple-ply yarn on rapier looms at Magarwara, Unnao, Uttar Pradesh. Bulk supply and custom constructions for Indian and export buyers.",
+    "Sidrah Industries manufactures heavy canvas, filter cloth, tarpaulin, tents and multiple-ply yarn on rapier looms at Magarwara, Unnao and our office in Kanpur, Uttar Pradesh. Bulk supply and custom constructions for Indian and export buyers.",
 
   address: {
-    line1: "Magarwara",
+    office: {
+      line1: "28 Rail Bazar Cantt",
+      city: "Kanpur",
+      state: "Uttar Pradesh",
+      country: "India",
+      postalCode: "208004",
+    },
+    factory: {
+      line1: "982, 983 Maswasi Magarwara",
+      city: "Unnao",
+      state: "Uttar Pradesh",
+      country: "India",
+      postalCode: "209801",
+    },
+    // Backward compatibility for existing single address references
+    line1: "982, 983 Maswasi Magarwara",
     city: "Unnao",
     state: "Uttar Pradesh",
     country: "India",
-    postalCode: "209801", // TODO: confirm PIN code with client
+    postalCode: "209801",
   },
 
   /** Digits only, country code first. No +, no spaces. */
-  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "919000000000",
-  phoneDisplay: process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? "+91 90000 00000",
+  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "919336041131",
+  phoneDisplay: process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? "+91 9336041131",
   email: process.env.NEXT_PUBLIC_EMAIL ?? "info@sidrahindustries.com",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sidrahindustries.com",
 

@@ -6,23 +6,9 @@ import { useEffect, useRef } from "react";
 const WeaveCloth = dynamic(() => import("./WeaveCloth"), { ssr: false, loading: () => null });
 
 /**
- * HERO BACKGROUND — one full-bleed layer, two possible fills.
- *
- * TO PUT THE FACTORY FOOTAGE BEHIND THE HERO:
- *   1. Save the clip at /public/videos/factory-hero.mp4 (and a poster frame
- *      at /public/factory/hero-poster.jpg)
- *   2. Set HERO_VIDEO below to that path.
- * Until then the WebGL cloth fills the same layer, so the hero is never an
- * empty black box while filming is still happening.
- *
- * Keep the clip short, muted and roughly 4–8 MB. Anything heavier and a buyer
- * on mobile data in Germany waits on it. For a longer walkthrough, host it on
- * Mux or Cloudflare Stream and swap the <video> for their player.
- *
- * The layer is inset by 6% so pointer parallax never exposes an edge.
+ * HERO BACKGROUND — Desert tent video background matching the reference design.
  */
-const HERO_VIDEO = "";
-const HERO_POSTER = "";
+const HERO_VIDEO = "/videos/Tent_swaying_in_desert_wind_20260927180538.mp4";
 
 export function HeroBackground() {
   const layer = useRef<HTMLDivElement>(null);
@@ -39,42 +25,43 @@ export function HeroBackground() {
       t.x = e.clientX / window.innerWidth - 0.5;
       t.y = e.clientY / window.innerHeight - 0.5;
     };
-    // phones have no pointer to follow, so the handset's own tilt drives it
-    const onTilt = (e: DeviceOrientationEvent) => {
-      if (e.gamma == null || e.beta == null) return;
-      t.x = Math.max(-1, Math.min(1, e.gamma / 45)) * 0.5;
-      t.y = Math.max(-1, Math.min(1, (e.beta - 45) / 45)) * 0.5;
-    };
 
     window.addEventListener("pointermove", onMove, { passive: true });
-    window.addEventListener("deviceorientation", onTilt, { passive: true });
 
     let raf = 0;
     const loop = () => {
       c.x += (t.x - c.x) * 0.055;
       c.y += (t.y - c.y) * 0.055;
-      el.style.transform = `translate3d(${c.x * -26}px, ${c.y * -20}px, 0) scale(1.02)`;
+      el.style.transform = `translate3d(${c.x * -15}px, ${c.y * -10}px, 0) scale(1.04)`;
       raf = requestAnimationFrame(loop);
     };
     loop();
 
     return () => {
       window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("deviceorientation", onTilt);
       cancelAnimationFrame(raf);
     };
   }, []);
 
   return (
     <>
-      <div ref={layer} className="hero-bg" aria-hidden>
+      <div ref={layer} className="hero-bg" aria-hidden style={{ position: "absolute", inset: 0, overflow: "hidden", zIndex: 0 }}>
         {HERO_VIDEO ? (
-          <video src={HERO_VIDEO} poster={HERO_POSTER || undefined} autoPlay muted loop playsInline preload="metadata" />
+          <video 
+            src={HERO_VIDEO} 
+            autoPlay 
+            muted 
+            loop 
+            playsInline 
+            preload="auto" 
+            className="h-full w-full object-cover"
+          />
         ) : (
           <WeaveCloth />
         )}
       </div>
-      <div className="hero-scrim" aria-hidden />
+      {/* Cinematic dark scrim overlay matching the reference theme */}
+      <div className="hero-scrim" aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,12,15,0.85) 0%, rgba(10,12,15,0.45) 60%, rgba(10,12,15,0.2) 100%)", zIndex: 1 }} />
     </>
   );
 }

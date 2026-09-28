@@ -105,14 +105,19 @@ export function Navbar() {
               aria-label={open ? "Close menu" : "Open menu"}
               aria-controls="mobile-sheet"
               className="grid h-11 w-11 shrink-0 place-items-center lg:hidden"
-              style={{ border: "1px solid currentColor" }}
+              style={{
+                border: "1px solid",
+                borderColor: open ? "var(--color-cloth-3)" : "currentColor",
+                transition: "border-color .3s",
+              }}
             >
-              <span className="block">
+              <span className="block" style={{ color: open ? "#f0ebde" : "inherit" }}>
                 {[0, 1, 2].map((i) => (
                   <i
                     key={i}
-                    className="block h-px w-[15px] bg-current"
+                    className="block h-px w-[15px]"
                     style={{
+                      backgroundColor: open ? "#f0ebde" : "currentColor",
                       marginTop: i ? 4 : 0,
                       transition: "transform .4s var(--ease), opacity .3s",
                       transform: open

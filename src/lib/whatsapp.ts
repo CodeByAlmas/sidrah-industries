@@ -35,3 +35,17 @@ export function generalQuoteLink() {
     ].join("\n"),
   );
 }
+
+export function visitQuoteLink() {
+  return whatsappLink(
+    [
+      `Hello ${site.name},`,
+      ``,
+      `I would like to arrange a visit to your manufacturing unit at Magarwara, Unnao.`,
+      ``,
+      `Preferred date / time: `,
+      `Number of visitors: `,
+      `My name & company: `,
+    ].join("\n"),
+  );
+}

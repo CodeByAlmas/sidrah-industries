@@ -24,7 +24,7 @@ export default function AboutPage() {
         <h1 className="disp max-w-[14ch]" style={{ fontSize: "clamp(2.4rem,7vw,6rem)" }}>
           <span className="mask"><span>A weaving unit</span></span>
           <span className="mask"><span>that answers</span></span>
-          <span className="mask"><span>straight.</span></span>
+          <span className="mask" style={{ color: "var(--color-indigo)" }}><span>straight.</span></span>
         </h1>
 
         <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-16">

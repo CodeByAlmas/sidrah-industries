@@ -12,7 +12,8 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   const rows: [string, string][] = [
-    ["Factory", `${site.address.line1}, ${site.address.city}, ${site.address.state} ${site.address.postalCode}, ${site.address.country}`],
+    ["Factory", `${site.address.factory.line1}, ${site.address.factory.city}, ${site.address.factory.state} ${site.address.factory.postalCode}, ${site.address.factory.country}`],
+    ["Office", `${site.address.office.line1}, ${site.address.office.city}, ${site.address.office.state} ${site.address.office.postalCode}, ${site.address.office.country}`],
     ["WhatsApp & phone", site.phoneDisplay],
     ["Email", site.email],
     ["Hours", "Monday – Saturday, 9:00 – 18:00 IST"],

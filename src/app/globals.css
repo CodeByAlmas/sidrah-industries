@@ -1,28 +1,25 @@
 @import "tailwindcss";
 
 /* ══════════════════════════════════════════════════════════
-   SIDRAH INDUSTRIES — design tokens
-   The page is the cloth: raw greige. The type is ink. The one
-   accent is vat indigo, the dye cotton has been taken to for
-   centuries. Vertical hairlines across the site are the warp.
+   SIDRAH INDUSTRIES — design tokens (Yellow Accent Theme)
    ══════════════════════════════════════════════════════════ */
 @theme {
-  --color-cloth:   #ddd6c4;
+  --color-cloth:    #ddd6c4;
   --color-cloth-2: #e6e0d1;
   --color-cloth-3: #f0ebde;
   --color-ink:     #141613;
   --color-ink-2:   #1e211c;
-  --color-indigo:  #26406f;
-  --color-indigo-2:#32528a;
+  --color-indigo:  #fbbf24;
+  --color-indigo-2:#f59e0b;
   --color-madder:  #9c4626;
 
   --font-display: "Syne", ui-sans-serif, system-ui, sans-serif;
-  --font-sans:    "Karla", ui-sans-serif, system-ui, sans-serif;
+  --font-sans:     "Karla", ui-sans-serif, system-ui, sans-serif;
   --font-mono:    "Azeret Mono", ui-monospace, monospace;
 }
 
 :root{
-  --pad: 1.15rem;                 /* gutter — one variable drives the whole grid */
+  --pad: 1.15rem;
   --safe-b: env(safe-area-inset-bottom, 0px);
   --rule: rgba(20,22,19,.14);
   --rule-soft: rgba(20,22,19,.07);
@@ -42,7 +39,7 @@ body{
   -webkit-font-smoothing:antialiased; overflow-x:hidden;
 }
 body.locked{overflow:hidden;position:fixed;width:100%}
-::selection{background:var(--color-indigo);color:var(--color-cloth-3)}
+::selection{background:var(--color-indigo);color:#111}
 :where(a,button,input,select,textarea):focus-visible{outline:2px solid var(--color-indigo);outline-offset:4px}
 
 /* ── layout ── */
@@ -70,20 +67,17 @@ body.locked{overflow:hidden;position:fixed;width:100%}
 @media(min-width:768px){.data{font-size:.8rem}}
 .mute{color:var(--mute)}
 
-/* ── the weft rule that draws itself across a heading ── */
 .weft{position:relative;padding-top:1.25rem}
 .weft::before{content:"";position:absolute;top:0;left:0;height:1px;width:100%;background:var(--color-ink);
   transform:scaleX(0);transform-origin:left;transition:transform 1s var(--ease-out)}
 .weft.in::before{transform:scaleX(1)}
 
-/* ── masked line reveal ── */
 .mask{overflow:hidden;display:block}
 .mask > *{display:block;transform:translateY(105%);transition:transform .95s var(--ease-out)}
 .mask.in > *{transform:none}
 .fade{opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
 .fade.in{opacity:1;transform:none}
 
-/* ── buttons: fill passes like a weft, label rolls over ── */
 .actions{display:flex;flex-wrap:wrap;gap:.7rem}
 @media(max-width:419px){.actions .btn{width:100%}}
 .btn{position:relative;display:inline-flex;border:1px solid var(--color-ink);overflow:hidden;cursor:pointer;isolation:isolate}
@@ -97,7 +91,6 @@ body.locked{overflow:hidden;position:fixed;width:100%}
 @media(min-width:768px){.btn .roll span{font-size:.92rem}}
 .btn .ico{width:1rem;height:1rem;flex:0 0 auto;transition:transform .5s var(--ease)}
 .btn-line{color:var(--color-ink)}
-/* hover states only where a real pointer exists, so a tap never leaves a stuck state */
 @media(hover:hover){
   .btn:hover::before,.btn:focus-visible::before{transform:scaleY(1)}
   .btn:hover .roll span,.btn:focus-visible .roll span{transform:translateY(-1.05em)}
@@ -108,10 +101,14 @@ body.locked{overflow:hidden;position:fixed;width:100%}
   .btn:active::before{transform:scaleY(1)}
   .btn-line:active{color:var(--color-cloth-3)}
 }
-.btn-ind{background:var(--color-indigo);border-color:var(--color-indigo);color:var(--color-cloth-3)}
-.btn-ind::before{background:var(--color-ink)}
+.btn-ind{background:var(--color-indigo);border-color:var(--color-indigo);color:#111}
+.btn-ind::before{background:#ffffff}
 
-/* ── dark inversion ── */
+@media(hover:hover){
+  .btn-ind:hover .roll span, .btn-ind:focus-visible .roll span{color:#111 !important}
+  .btn-ind:hover .ico, .btn-ind:focus-visible .ico{color:#111 !important}
+}
+
 .dark-band{background:var(--color-ink);color:var(--color-cloth-3)}
 .dark-band .mute{color:rgba(240,235,222,.55)}
 .dark-band .lede,.dark-band .body-text{color:rgba(240,235,222,.72)}
@@ -119,17 +116,15 @@ body.locked{overflow:hidden;position:fixed;width:100%}
 .dark-band .btn{border-color:var(--color-cloth-3);color:var(--color-cloth-3)}
 .dark-band .btn::before{background:var(--color-cloth-3)}
 .dark-band .btn:hover{color:var(--color-ink)}
-.dark-band .btn-ind{background:var(--color-indigo);border-color:var(--color-indigo)}
-.dark-band .btn-ind::before{background:var(--color-cloth-3)}
+.dark-band .btn-ind{background:var(--color-indigo);border-color:var(--color-indigo);color:#111}
+.dark-band .btn-ind::before{background:#ffffff}
 .dark-band .rows,.dark-band .book{border-color:rgba(240,235,222,.16)}
 .dark-band .dl,.dark-band .row{border-color:rgba(240,235,222,.14)}
 
-/* ── sample-book rows (the catalogue) ── */
 .book{border-top:1px solid var(--color-ink)}
 .row{position:relative;display:grid;grid-template-columns:1fr;gap:.9rem;
   padding-block:1.3rem;border-bottom:1px solid var(--rule);isolation:isolate}
 @media(min-width:768px){.row{grid-template-columns:1fr auto;gap:1.5rem;align-items:center;padding-block:1.6rem}}
-/* the hover fill bleeds exactly one gutter either side, at every breakpoint */
 .row::before{content:"";position:absolute;top:0;bottom:0;left:calc(var(--pad) * -1);right:calc(var(--pad) * -1);
   background:var(--color-ink);z-index:-1;transform:scaleY(0);transform-origin:bottom;
   transition:transform .45s var(--ease)}
@@ -149,7 +144,6 @@ body.locked{overflow:hidden;position:fixed;width:100%}
 }
 @media(hover:none){.row:active::before{transform:scaleY(1)}.row:active{color:var(--color-cloth-3)}}
 
-/* ── spec rows ── */
 .rows{border-top:1px solid var(--color-ink)}
 .dl{display:grid;grid-template-columns:1fr;gap:.25rem;padding-block:1rem;border-bottom:1px solid var(--rule)}
 @media(min-width:640px){.dl{grid-template-columns:minmax(9rem,15rem) 1fr;gap:2rem;padding-block:1.1rem}}
@@ -162,7 +156,7 @@ body.locked{overflow:hidden;position:fixed;width:100%}
   letter-spacing:.14em;text-transform:uppercase;color:rgba(240,235,222,.5);z-index:2}
 .tex{position:absolute;inset:0;opacity:.5;
   background-image:repeating-linear-gradient(90deg,rgba(240,235,222,.09) 0 1px,transparent 1px 6px),
-                   repeating-linear-gradient(0deg,rgba(240,235,222,.07) 0 1px,transparent 1px 6px)}
+                    repeating-linear-gradient(0deg,rgba(240,235,222,.07) 0 1px,transparent 1px 6px)}
 
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;
@@ -172,7 +166,6 @@ body.locked{overflow:hidden;position:fixed;width:100%}
   .weft::before{transform:scaleX(1)}
 }
 
-/* ── hero: the background runs full bleed and answers the pointer ── */
 .hero{position:relative;isolation:isolate;min-height:100svh;display:flex;align-items:flex-end;
   padding-top:5.5rem;padding-bottom:calc(2.5rem + var(--safe-b));color:var(--color-cloth-3);overflow:hidden}
 @supports not (min-height:100svh){.hero{min-height:100vh}}
@@ -194,7 +187,6 @@ body.locked{overflow:hidden;position:fixed;width:100%}
   animation:cue 2.2s var(--ease-out) infinite}
 @keyframes cue{0%{transform:scaleY(0)}40%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
 
-/* ── filter rail scrolls sideways on a phone rather than wrapping ── */
 .filters{display:flex;border-top:1px solid var(--color-ink);border-bottom:1px solid var(--rule);
   overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .filters::-webkit-scrollbar{display:none}
@@ -204,11 +196,9 @@ body.locked{overflow:hidden;position:fixed;width:100%}
 @media(hover:hover){.fl:hover{color:var(--color-ink)}}
 .fl.on{color:var(--color-indigo)}
 
-/* ── custom cursor (fine pointers only; touch keeps the native one) ── */
 body.cursor-on,body.cursor-on a,body.cursor-on button,body.cursor-on select,body.cursor-on label{cursor:none}
 @media(hover:none),(pointer:coarse){body.cursor-on{cursor:auto}}
 
-/* ── Hide header quote button on mobile/tablet (< 1024px) ── */
 @media(max-width: 1023px) {
   header .btn-ind {
     display: none !important;

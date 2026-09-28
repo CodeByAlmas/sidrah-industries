@@ -12,7 +12,9 @@
   "dependencies": {
     "@react-three/drei": "^10.3.0",
     "@react-three/fiber": "^9.1.2",
+    "framer-motion": "^13.4.4",
     "lucide-react": "^0.544.0",
+    "media-chrome": "^4.19.2",
     "motion": "^12.23.12",
     "next": "^16.3.5",
     "react": "^19.3.0",
