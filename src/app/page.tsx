@@ -267,7 +267,7 @@ export default function HomePage() {
               </p>
             </div>
             <Actions className="fade mt-8">
-              <ButtonLink href={generalQuoteLink()} label="Start an enquiry" variant="ind" external cursor="Quote" style={{ background: "#fbbf24", color: "#111" }} />
+              <ButtonLink href={generalQuoteLink()} label="Start an enquiry" variant="ind" external cursor="Quote" />
             </Actions>
           </div>
 
@@ -320,7 +320,7 @@ export default function HomePage() {
             Specification, quantity, delivery country. Get a prompt quotation.
           </p>
           <Actions className="fade mt-9">
-            <ButtonLink href={generalQuoteLink()} label="Message us on WhatsApp" variant="ind" external cursor="Quote" style={{ background: "#fbbf24", color: "#111" }} />
+            <ButtonLink href={generalQuoteLink()} label="Message us on WhatsApp" variant="ind" external cursor="Quote" />
           </Actions>
         </div>
       </section>
