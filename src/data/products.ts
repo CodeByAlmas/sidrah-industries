@@ -247,7 +247,7 @@ export const products: Product[] = [
       "/products/canvas-tota-bags-3.png",
       "/products/canvas-tota-bags-4.png",
     ],
-    swatch: { warp: "__D4C7B0", weft: "#A38F75", density: 28 },
+    swatch: { warp: "#D4C7B0", weft: "#A38F75", density: 28 },
   },
   {
     slug: "filter-cloth",
@@ -276,7 +276,7 @@ export const products: Product[] = [
       "Chemical and mineral dewatering",
     ],
     images: [
-      "/products/filter-cloth.png",
+      "/products/filter-cloth-1.png",
     ],
     swatch: { warp: "#D2C9B4", weft: "#9EA492", density: 44 },
   },
@@ -289,7 +289,7 @@ export function getProduct(slug: string) {
 }
 
 export function relatedProducts(slug: string, limit = 3) {
-  const current = products.products?.find ? products.find((p) => p.slug === slug) : null;
+  const current = products.find((p) => p.slug === slug);
   if (!current) return products.slice(0, limit);
   return products
     .filter((p) => p.slug !== slug)
