@@ -7,7 +7,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Send a specification to Sidrah Industries, Magarwara, Unnao. Quotations are handled over WhatsApp for Indian and export buyers.",
+    "Send a specification to Sidrah Industries, Magarwara, Unnao. Quotations are handled over WhatsApp and email for Indian and export buyers.",
 };
 
 export default function ContactPage() {
@@ -20,21 +20,26 @@ export default function ContactPage() {
     ["Nearest airport", "Lucknow (LKO), ~1 hour by road"],
   ];
 
+  const emailSubject = encodeURIComponent("Enquiry for Sidrah Industries — Textile Bulk Supply");
+  const emailBody = encodeURIComponent(
+    `Hello ${site.name},\n\nI would like to discuss a requirement for woven fabrics / yarn.\n\nProduct of interest:\nQuantity required:\nDelivery country & port:\nCompany name:\n`
+  );
+  const mailtoLink = `mailto:${site.email}?subject=${emailSubject}&body=${emailBody}`;
+
   return (
     <div className="shell band grid items-start gap-12 lg:grid-cols-[1.05fr_.95fr] lg:gap-16" style={{ paddingTop: "7.5rem" }}>
       <div>
         <p className="mono fade mb-6">Contact</p>
-        <h1 className="disp max-w-[12ch]" style={{ fontSize: "clamp(2.2rem,6vw,4.6rem)" }}>
-          <span className="mask"><span>Quotations</span></span>
-          <span className="mask"><span>run on</span></span>
-          <span className="mask"><span style={{ color: "var(--color-indigo)" }}>WhatsApp.</span></span>
+        <h1 className="h1 max-w-[18ch]">
+          <span className="mask"><span>Quotations on</span></span>
+          <span className="mask"><span style={{ color: "var(--color-indigo)" }}>WhatsApp & Email.</span></span>
         </h1>
-        <p className="lede fade mt-7">
-          Faster than email for both of us, it works across time zones, and you can send a photo of the fabric you are
-          trying to match.
+        <p className="lede fade mt-6">
+          Reach out via WhatsApp for rapid responses, or send an email specification. We support international export buyers across all time zones.
         </p>
-        <Actions className="fade mt-8">
+        <Actions className="fade mt-8 flex flex-wrap gap-4">
           <ButtonLink href={generalQuoteLink()} label="Open WhatsApp" variant="ind" external cursor="Quote" />
+          <ButtonLink href={mailtoLink} label="Send Email Enquiry" external cursor="Email" />
         </Actions>
 
         <dl className="rows fade mt-12">

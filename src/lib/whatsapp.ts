@@ -12,7 +12,6 @@ export function productQuoteLink(product: Product) {
       `Hello ${site.name},`,
       ``,
       `I would like a quotation for: ${product.name}`,
-      `Listed MOQ: ${product.moq.value}`,
       ``,
       `Quantity required: `,
       `Specification / width / GSM: `,

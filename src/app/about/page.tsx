@@ -21,7 +21,7 @@ export default function AboutPage() {
     <>
       <div className="shell band" style={{ paddingTop: "7.5rem" }}>
         <p className="mono fade mb-6">About</p>
-        <h1 className="disp max-w-[14ch]" style={{ fontSize: "clamp(2.4rem,7vw,6rem)" }}>
+        <h1 className="h1 max-w-[20ch]">
           <span className="mask"><span>A weaving unit</span></span>
           <span className="mask"><span>that answers</span></span>
           <span className="mask" style={{ color: "var(--color-indigo)" }}><span>straight.</span></span>

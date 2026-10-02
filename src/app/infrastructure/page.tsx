@@ -179,15 +179,11 @@ const InteractiveVideoCard = ({ src, title, caption }: { src: string; title: str
   );
 };
 
-/**
- * PRODUCTION PROCESS STEPS & MEDIA SLOTS.
- * Following client workflow: Winding, TFO/Twisting, Warping, Weaving, Drying & Finishing.
- */
 const productionSteps = [
   {
     step: "01",
     name: "Winding",
-    note: "Yarn preparation and cone winding stage (4 Images slot)",
+    note: "Yarn preparation and cone winding stage",
     mediaType: "images",
     items: [
       { name: "Winding Unit View 1", src: "/factory/winding-1.jpg" },
@@ -199,7 +195,7 @@ const productionSteps = [
   {
     step: "02",
     name: "TFO / Twisting",
-    note: "In-house multiple-ply twisting department (2 Images, 2 Videos)",
+    note: "In-house multiple-ply twisting department",
     mediaType: "mixed",
     images: [
       { name: "Twisting Frame Front", src: "/factory/tfo-1.jpg" },
@@ -213,7 +209,7 @@ const productionSteps = [
   {
     step: "03",
     name: "Warping",
-    note: "Beam preparation and yarn alignment (1 Image slot)",
+    note: "Beam preparation and yarn alignment",
     mediaType: "images",
     items: [
       { name: "Warping Machine & Beam", src: "/factory/warping-1.jpg" },
@@ -222,7 +218,7 @@ const productionSteps = [
   {
     step: "04",
     name: "Weaving",
-    note: "Nova Pignone rapier looms on the main floor (2 Videos, 2 Images)",
+    note: "Nova Pignone rapier looms on the main floor",
     mediaType: "mixed",
     images: [
       { name: "Rapier Loom Shed", src: "/factory/weaving-1.jpg" },
@@ -245,19 +241,125 @@ const productionSteps = [
 ];
 
 export default function InfrastructurePage() {
+  const [activeStep, setActiveStep] = useState<number | null>(null);
+
   return (
     <>
-      <div className="shell band" style={{ paddingTop: "7.5rem" }}>
-        <p className="mono fade mb-6">Inside the unit & Production Workflow</p>
-        <h1 className="disp max-w-[13ch]" style={{ fontSize: "clamp(2.4rem,7vw,6rem)" }}>
-          <span className="mask"><span>1. Winding,</span></span>
-          <span className="mask"><span>2. TFO,</span></span>
-          <span className="mask"><span>3. Warping,</span></span>
-          <span className="mask"><span>4. Weaving,</span></span>
-          <span className="mask"><span>5. Finishing.</span></span>
-        </h1>
+      <div className="shell band" style={{ paddingTop: "7.5rem", paddingBottom: "3rem" }}>
+        <p className="mono fade mb-4 tracking-widest text-[var(--color-indigo)]">INSIDE THE UNIT & PRODUCTION WORKFLOW</p>
+        
+        <div className="border-t border-[var(--color-ink)] pt-6 mt-4">
+          <p className="text-xs font-mono uppercase tracking-widest text-neutral-500 mb-6">Click any production stage below to expand its floor media:</p>
+          <div className="flex flex-col gap-4">
+            {productionSteps.map((step, idx) => {
+              const isActive = activeStep === idx;
+              return (
+                <div key={step.name} className="transition-all duration-500">
+                  <button
+                    onClick={() => setActiveStep(isActive ? null : idx)}
+                    className={cn(
+                      "w-full group text-left transition-all duration-300 py-4 px-6 rounded-xl flex items-center justify-between border cursor-pointer",
+                      isActive 
+                        ? "bg-[var(--color-ink)] text-[var(--color-cloth-3)] border-[var(--color-ink)] shadow-2xl scale-[1.01]" 
+                        : "bg-white/60 text-[var(--color-ink)] border-[var(--rule)] hover:border-[var(--color-indigo)] hover:bg-white"
+                    )}
+                  >
+                    <div className="flex items-baseline gap-4 md:gap-8">
+                      <span className={cn("font-mono text-sm tracking-wider", isActive ? "text-[var(--color-indigo)]" : "text-neutral-400")}>
+                        {step.step}.
+                      </span>
+                      <span className="font-display text-[clamp(1.5rem,3.5vw,2.5rem)] font-bold tracking-tight">
+                        {step.name}
+                      </span>
+                    </div>
+                    <span className={cn("text-xs font-mono uppercase tracking-widest px-3 py-1 rounded-full transition-colors", 
+                      isActive ? "bg-[var(--color-indigo)] text-black font-bold" : "text-neutral-500 bg-neutral-200/60"
+                    )}>
+                      {isActive ? "Close View ↑" : "Expand View ↓"}
+                    </span>
+                  </button>
 
-        <dl className="rows fade mt-14">
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="p-6 md:p-10 my-4 bg-white/90 rounded-2xl border border-[var(--rule)] shadow-inner space-y-8">
+                          <div className="flex items-center justify-between flex-wrap gap-4 border-b border-[var(--rule)] pb-4">
+                            <h3 className="font-display text-2xl font-bold">Step {step.step}: {step.name}</h3>
+                            <span className="text-xs font-mono text-[var(--color-indigo)] uppercase tracking-wider bg-neutral-900 px-3 py-1 rounded-full">
+                              {step.note}
+                            </span>
+                          </div>
+
+                          {/* Render Images */}
+                          {step.mediaType === "images" && step.items && (
+                            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                              {step.items.map((img, i) => (
+                                <figure key={i}>
+                                  <div className="relative aspect-4/3 overflow-hidden bg-ink-2 shadow-md rounded-lg" style={{ border: "1px solid var(--rule)" }}>
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img src={img.src} alt={img.name} className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" />
+                                  </div>
+                                  <figcaption className="pt-3.5">
+                                    <h4 className="font-display text-[.98rem] font-semibold tracking-[-.02em]">{img.name}</h4>
+                                  </figcaption>
+                                </figure>
+                              ))}
+                            </div>
+                          )}
+
+                          {/* Render Mixed Images & Videos */}
+                          {step.mediaType === "mixed" && (
+                            <div className="space-y-10">
+                              {step.images && step.images.length > 0 && (
+                                <div className="grid gap-6 sm:grid-cols-2">
+                                  {step.images.map((img, i) => (
+                                    <figure key={i}>
+                                      <div className="relative aspect-16/10 overflow-hidden bg-ink-2 shadow-md rounded-lg" style={{ border: "1px solid var(--rule)" }}>
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img src={img.src} alt={img.name} className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" />
+                                      </div>
+                                      <figcaption className="pt-3.5">
+                                        <h4 className="font-display text-[.98rem] font-semibold tracking-[-.02em]">{img.name}</h4>
+                                      </figcaption>
+                                    </figure>
+                                  ))}
+                                </div>
+                              )}
+                              {step.videos && (
+                                <div className="grid gap-6 sm:grid-cols-2">
+                                  {step.videos.map((vid, vIdx) => (
+                                    <InteractiveVideoCard key={vIdx} src={vid.src || ""} title={vid.title} caption={vid.caption} />
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          )}
+
+                          {/* Render Video Showcase */}
+                          {step.mediaType === "video-showcase" && step.videos && (
+                            <div className="grid gap-6 sm:grid-cols-2 max-w-3xl">
+                              {step.videos.map((vid, vIdx) => (
+                                <InteractiveVideoCard key={vIdx} src={vid.src || ""} title={vid.title} caption={vid.caption} />
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <dl className="rows fade mt-16">
           {site.machinery.map((m) => (
             <div key={m.name} className="dl py-7">
               <dt className="h3">{m.name}</dt>
@@ -267,94 +369,9 @@ export default function InfrastructurePage() {
         </dl>
       </div>
 
-      {/* Production Steps Detailed Gallery & Media Sections */}
-      <div className="shell band space-y-20">
-        <div className="weft">
-          <h2 className="h1"><span className="mask"><span>Step-by-step</span></span> <span className="mask"><span>floor operations</span></span></h2>
-        </div>
-
-        {productionSteps.map((stepItem) => (
-          <div key={stepItem.name} className="fade pt-8 border-t border-[var(--rule)]">
-            <div className="flex items-baseline justify-between mb-8">
-              <div>
-                <span className="mono text-[var(--color-indigo)] text-sm">STEP {stepItem.step}</span>
-                <h3 className="h2 mt-1">{stepItem.name}</h3>
-              </div>
-              <p className="mute text-sm max-w-[30ch] text-right hidden sm:block">{stepItem.note}</p>
-            </div>
-
-            {/* Render Images */}
-            {stepItem.mediaType === "images" && stepItem.items && (
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {stepItem.items.map((img, i) => (
-                  <figure key={i}>
-                    <div className="relative aspect-4/3 overflow-hidden bg-ink-2" style={{ border: "1px solid var(--rule)" }}>
-                      {img.src ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={img.src} alt={img.name} className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" />
-                      ) : (
-                        <>
-                          <span className="tex" aria-hidden />
-                          <span className="stamp">Photo to be added</span>
-                        </>
-                      )}
-                    </div>
-                    <figcaption className="pt-3.5">
-                      <h4 className="font-display text-[.98rem] font-semibold tracking-[-.02em]">{img.name}</h4>
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
-            )}
-
-            {/* Render Mixed Images & Videos */}
-            {stepItem.mediaType === "mixed" && (
-              <div className="space-y-12">
-                <div className="grid gap-6 sm:grid-cols-2">
-                  {stepItem.images?.map((img, i) => (
-                    <figure key={i}>
-                      <div className="relative aspect-16/10 overflow-hidden bg-ink-2" style={{ border: "1px solid var(--rule)" }}>
-                        {img.src ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img src={img.src} alt={img.name} className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" />
-                        ) : (
-                          <>
-                            <span className="tex" aria-hidden />
-                            <span className="stamp">Photo to be added</span>
-                          </>
-                        )}
-                      </div>
-                      <figcaption className="pt-3.5">
-                        <h4 className="font-display text-[.98rem] font-semibold tracking-[-.02em]">{img.name}</h4>
-                      </figcaption>
-                    </figure>
-                  ))}
-                </div>
-                {stepItem.videos && (
-                  <div className="grid gap-6 sm:grid-cols-2">
-                    {stepItem.videos.map((vid, vIdx) => (
-                      <InteractiveVideoCard key={vIdx} src={vid.src || ""} title={vid.title} caption={vid.caption} />
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* Render Video Showcase / Finishing Line */}
-            {stepItem.mediaType === "video-showcase" && stepItem.videos && (
-              <div className="grid gap-6 sm:grid-cols-2 max-w-2xl">
-                {stepItem.videos.map((vid, vIdx) => (
-                  <InteractiveVideoCard key={vIdx} src={vid.src || ""} title={vid.title} caption={vid.caption} />
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-
       {/* Factory Visits CTA */}
-      <div className="shell band-s pb-20">
-        <div className="fade p-8" style={{ border: "1px solid var(--rule)" }}>
+      <div className="shell pb-16">
+        <div className="fade p-8 rounded-2xl bg-white/40 shadow-sm" style={{ border: "1px solid var(--rule)" }}>
           <h2 className="h2">Factory visits</h2>
           <p className="body-text mt-3.5">
             Buyers are welcome at the unit. Unnao is roughly an hour from Lucknow airport. Tell us when you land and we

@@ -4,12 +4,11 @@ import { useState, use } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { products, getProduct, relatedProducts } from "@/data/products";
+import { getProduct, relatedProducts } from "@/data/products";
 import { productQuoteLink } from "@/lib/whatsapp";
 import { ButtonLink, Actions } from "@/components/ui/Button";
 import { WeaveSwatch } from "@/components/ui/WeaveSwatch";
 import { ProductRow } from "@/components/ProductRow";
-import { site } from "@/data/site";
 
 export default function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = use(params);
@@ -17,10 +16,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
   const product = getProduct(slug);
   if (!product) notFound();
 
-  // Directly uses product.images array defined in products.ts for all products/variants
   const displayImages = product.images;
-
-  // State for interactive active main image selection from thumbnails
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   return (
@@ -32,7 +28,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
       </div>
 
       <div className="shell grid items-start gap-10 pb-16 pt-10 lg:grid-cols-[1.1fr_.9fr] lg:gap-16">
-        {/* Left Side: Interactive Gallery Layout with Click-to-Change Main Preview */}
+        {/* Left Side: Interactive Gallery Layout */}
         <div className="space-y-4">
           <div className="relative aspect-4/5 overflow-hidden bg-ink-2 shadow-lg" style={{ border: "1px solid var(--rule)" }}>
             {displayImages[activeImageIndex] ? (
@@ -55,7 +51,6 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
             </div>
           </div>
 
-          {/* Thumbnail Grid: Clicking any thumbnail instantly updates the main big block */}
           {displayImages.length > 1 && (
             <div className="grid grid-cols-4 gap-3">
               {displayImages.map((imgSrc, idx) => (
@@ -93,22 +88,12 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
           </h1>
           <p className="lede fade mt-5">{product.summary}</p>
 
-          {/* The one commercial fact a bulk buyer looks for */}
-          <div className="moq fade relative mt-8 overflow-hidden p-6" style={{ border: "1px solid var(--color-indigo)" }}>
-            <span className="absolute inset-0" style={{ background: "var(--color-indigo)", opacity: 0.05 }} aria-hidden />
-            <p className="mono relative" style={{ color: "var(--color-indigo)" }}>Minimum order quantity</p>
-            <p className="relative mt-2 font-display font-extrabold leading-none tracking-[-.04em]" style={{ fontSize: "clamp(1.9rem,4vw,2.6rem)" }}>
-              {product.moq.value}
-            </p>
-            {product.moq.note && <p className="mute relative mt-2 text-[.9rem]">{product.moq.note}</p>}
-          </div>
-
-          <Actions className="fade mt-6">
+          <Actions className="fade mt-8">
             <ButtonLink href={productQuoteLink(product)} label="Quote on WhatsApp" variant="ind" external cursor="Quote" />
             <ButtonLink href="/contact" label="Other ways to reach us" cursor="Contact" />
           </Actions>
           <p className="mute fade mt-4 max-w-[40ch] text-[.82rem]">
-            The message opens pre-written with this product and its MOQ. Add your quantity and country, and send.
+            The message opens pre-written with this product. Add your quantity and country, and send.
           </p>
 
           <div className="body-text fade mt-10">

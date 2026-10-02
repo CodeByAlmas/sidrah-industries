@@ -206,7 +206,7 @@ export default function HomePage() {
       <section className="band-s bg-white text-ink">
         <div className="shell">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr_1.1fr]" style={{ borderTop: "1px solid var(--color-ink)" }}>
-            {[site.capacity.cloth, site.capacity.yarn].map((c, i) => (
+            {[site.capacity.cloth, site.capacity.yarn].map((c) => (
               <div
                 key={c.label}
                 className="fade py-6 md:py-10 md:pr-8"
@@ -282,7 +282,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Factory footage (Updated with InteractiveVideoCard) ── */}
+      {/* ── Factory footage ── */}
       <section className="band bg-white text-ink">
         <div className="shell">
           <div className="weft">
@@ -312,7 +312,7 @@ export default function HomePage() {
       {/* ── Closing ── */}
       <section className="dark-band bg-[#0b0d10] text-white">
         <div className="shell band">
-          <h2 className="disp max-w-[16ch]" style={{ fontSize: "clamp(2.2rem,7vw,5.5rem)" }}>
+          <h2 className="h1 max-w-[20ch]">
             <span className="mask"><span>Tell us what the</span></span>
             <span className="mask"><span>fabric has to survive.</span></span>
           </h2>

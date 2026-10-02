@@ -4,20 +4,19 @@ import { CatalogueGrid } from "@/components/sections/CatalogueGrid";
 export const metadata: Metadata = {
   title: "Products",
   description:
-    "Heavy canvas, filter cloth, tarpaulin, tents, multiple-ply yarn, and dyeing & coating. Minimum order quantity stated on every product.",
+    "Heavy canvas, filter cloth, tarpaulin, tents, multiple-ply yarn, and dyeing & coating. Manufactured in bulk at Unnao & Kanpur.",
 };
 
 export default function ProductsPage() {
   return (
     <div className="shell band" style={{ paddingTop: "7.5rem" }}>
-      <p className="mono fade mb-6">Catalogue — ten lines</p>
-      <h1 className="disp max-w-[14ch]" style={{ fontSize: "clamp(2.4rem,7vw,6rem)" }}>
-        <span className="mask"><span>Minimum order,</span></span>
-        <span className="mask"><span>stated up front.</span></span>
+      <p className="mono fade mb-6">Catalogue — running lines</p>
+      <h1 className="h1 max-w-[18ch]">
+        <span className="mask"><span>Industrial woven fabrics</span></span>
+        <span className="mask"><span>and bulk supplies.</span></span>
       </h1>
-      <p className="lede fade mt-8">
-        We supply in bulk, so the MOQ sits on the face of each product rather than three emails deep. Below-MOQ trial
-        quantities can still be discussed.
+      <p className="lede fade mt-6">
+        Manufactured on rapier looms in Unnao with in-house twisting and dyeing. Custom constructions and bulk export enquiries welcome.
       </p>
       <div className="mt-11">
         <CatalogueGrid />

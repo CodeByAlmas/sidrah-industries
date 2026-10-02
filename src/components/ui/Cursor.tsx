@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { products, type Product } from "@/data/products";
-import { WeaveSwatch } from "./WeaveSwatch";
 
 /**
  * CURSOR.
@@ -12,8 +12,8 @@ import { WeaveSwatch } from "./WeaveSwatch";
  *     both the greige page and the dark bands, with a ring lagging behind it
  *   · over anything marked data-cursor — the ring grows into an indigo disc
  *     carrying a one-word label ("Quote", "View", "Browse")
- *   · over a catalogue row — the ring gives way to a fabric sample, the way a
- *     buyer holds a swatch up while reading the book
+ *   · over a catalogue row — the ring gives way to a product image preview,
+ *     the way a buyer holds a sample up while reading the book
  *
  * Only mounted for fine pointers. Touch devices keep the native cursor and
  * none of this renders at all.
@@ -63,7 +63,7 @@ export function Cursor() {
     return () => {
       document.body.classList.remove("cursor-on");
       window.removeEventListener("pointermove", onMove);
-      document.removeEventListener("mouseleave", onLeave);
+      window.removeEventListener("mouseleave", onLeave);
       cancelAnimationFrame(raf);
     };
   }, [fine]);
@@ -94,6 +94,7 @@ export function Cursor() {
   if (!fine) return null;
 
   const big = Boolean(label);
+  const primaryImage = sample?.images && sample.images.length > 0 ? sample.images[0] : null;
 
   return (
     <>
@@ -146,7 +147,7 @@ export function Cursor() {
       <div
         ref={peek}
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[94] overflow-hidden"
+        className="pointer-events-none fixed left-0 top-0 z-[94] overflow-hidden bg-ink-2"
         style={{
           width: 170,
           height: 214,
@@ -156,13 +157,14 @@ export function Cursor() {
           transition: "opacity .35s var(--ease-out)",
         }}
       >
-        {sample && (
-          <WeaveSwatch
+        {sample && primaryImage && (
+          <Image
             key={sample.slug}
-            warp={sample.swatch.warp}
-            weft={sample.swatch.weft}
-            density={sample.swatch.density}
-            className="h-full w-full"
+            src={primaryImage}
+            alt={sample.name}
+            fill
+            sizes="170px"
+            className="object-cover"
           />
         )}
       </div>
