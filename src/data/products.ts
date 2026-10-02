@@ -276,7 +276,7 @@ export const products: Product[] = [
       "Chemical and mineral dewatering",
     ],
     images: [
-      "/products/filter-cloth-1.png",
+      "/products/filter-cloth.png",
     ],
     swatch: { warp: "#D2C9B4", weft: "#9EA492", density: 44 },
   },
