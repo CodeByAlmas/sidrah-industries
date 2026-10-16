@@ -51,12 +51,20 @@ export default function ContactPage() {
           ))}
         </dl>
 
-        {/* MAP SLOT — paste the Google Maps embed iframe for the factory here. */}
-        <div className="fade relative mt-8 grid aspect-video place-items-center bg-ink-2">
-          <span className="tex" aria-hidden />
-          <p className="mono relative" style={{ color: "rgba(240,235,222,.5)", letterSpacing: ".14em" }}>
-            Map embed to be added
-          </p>
+        {/* Google Maps Embed Slot with Exact Coordinates from User Link */}
+        <div className="fade relative mt-8 aspect-video w-full overflow-hidden bg-ink-2 shadow-md rounded-lg" style={{ border: "1px solid var(--rule)" }}>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3571.7423!2d80.4405625!3d26.5113125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c3f2cf8de463d%3A0x24c8576c67651f21!2sSidrah%20Industries!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen={false}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Sidrah Industries Factory Location Map - Magarwara Unnao"
+            aria-label="Sidrah Industries Factory Location Map"
+            className="h-full w-full object-cover"
+          />
         </div>
       </div>
 

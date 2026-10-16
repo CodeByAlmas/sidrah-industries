@@ -161,6 +161,7 @@ const InteractiveVideoCard = ({ src, title, caption }: { src: string; title: str
                     e.stopPropagation();
                     setShowVideoPopOver(false);
                   }}
+                  aria-label="Close video player"
                   className="absolute right-5 top-5 z-[10005] flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-black/80 text-white shadow-lg transition-transform hover:scale-110"
                 >
                   <Plus className="size-6 rotate-45" />
@@ -202,8 +203,7 @@ const productionSteps = [
       { name: "Ply Yarn Cones", src: "/factory/tfo-2.jpg" },
     ],
     videos: [
-      { title: "TFO Twisting Operation 1", caption: "Multiple-ply twisting floor in action.", src: "/videos/tfo-1.mp4" },
-      { title: "TFO Twisting Operation 2", caption: "High-speed yarn twisting process.", src: "/videos/tfo-2.mp4" },
+      { title: "TFO Twisting Operation", caption: "Multiple-ply twisting floor in action.", src: "/videos/tfo-1.mp4" },
     ],
   },
   {
@@ -225,8 +225,7 @@ const productionSteps = [
       { name: "Cloth Inspection on Loom", src: "/factory/weaving-2.jpg" },
     ],
     videos: [
-      { title: "Rapier Loom, Full Width", caption: "Heavy canvas being woven at production speed.", src: "/videos/weaving-1.mp4" },
-      { title: "Weaving Floor Operation", caption: "Continuous weft insertion and loom mechanics.", src: "/videos/weaving-2.mp4" },
+      { title: "Rapier Loom Operation", caption: "Heavy canvas being woven at production speed.", src: "/videos/weaving-1.mp4" },
     ],
   },
   {
@@ -244,7 +243,7 @@ export default function InfrastructurePage() {
   const [activeStep, setActiveStep] = useState<number | null>(null);
 
   return (
-    <>
+    <main>
       <div className="shell band" style={{ paddingTop: "7.5rem", paddingBottom: "3rem" }}>
         <p className="mono fade mb-4 tracking-widest text-[var(--color-indigo)]">INSIDE THE UNIT & PRODUCTION WORKFLOW</p>
         
@@ -257,6 +256,7 @@ export default function InfrastructurePage() {
                 <div key={step.name} className="transition-all duration-500">
                   <button
                     onClick={() => setActiveStep(isActive ? null : idx)}
+                    aria-expanded={isActive}
                     className={cn(
                       "w-full group text-left transition-all duration-300 py-4 px-6 rounded-xl flex items-center justify-between border cursor-pointer",
                       isActive 
@@ -303,7 +303,7 @@ export default function InfrastructurePage() {
                                 <figure key={i}>
                                   <div className="relative aspect-4/3 overflow-hidden bg-ink-2 shadow-md rounded-lg" style={{ border: "1px solid var(--rule)" }}>
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img src={img.src} alt={img.name} className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" />
+                                    <img src={img.src} alt={img.name} className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy" />
                                   </div>
                                   <figcaption className="pt-3.5">
                                     <h4 className="font-display text-[.98rem] font-semibold tracking-[-.02em]">{img.name}</h4>
@@ -322,7 +322,7 @@ export default function InfrastructurePage() {
                                     <figure key={i}>
                                       <div className="relative aspect-16/10 overflow-hidden bg-ink-2 shadow-md rounded-lg" style={{ border: "1px solid var(--rule)" }}>
                                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img src={img.src} alt={img.name} className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" />
+                                        <img src={img.src} alt={img.name} className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy" />
                                       </div>
                                       <figcaption className="pt-3.5">
                                         <h4 className="font-display text-[.98rem] font-semibold tracking-[-.02em]">{img.name}</h4>
@@ -332,7 +332,7 @@ export default function InfrastructurePage() {
                                 </div>
                               )}
                               {step.videos && (
-                                <div className="grid gap-6 sm:grid-cols-2">
+                                <div className="grid gap-6 sm:grid-cols-1 max-w-xl">
                                   {step.videos.map((vid, vIdx) => (
                                     <InteractiveVideoCard key={vIdx} src={vid.src || ""} title={vid.title} caption={vid.caption} />
                                   ))}
@@ -370,7 +370,7 @@ export default function InfrastructurePage() {
       </div>
 
       {/* Factory Visits CTA */}
-      <div className="shell pb-16">
+      <section className="shell pb-16">
         <div className="fade p-8 rounded-2xl bg-white/40 shadow-sm" style={{ border: "1px solid var(--rule)" }}>
           <h2 className="h2">Factory visits</h2>
           <p className="body-text mt-3.5">
@@ -381,7 +381,7 @@ export default function InfrastructurePage() {
             <ButtonLink href={visitQuoteLink()} label="Arrange a visit" external cursor="Visit" />
           </Actions>
         </div>
-      </div>
-    </>
+      </section>
+    </main>
   );
 }

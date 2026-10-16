@@ -48,8 +48,6 @@ export const products: Product[] = [
     applications: ["Truck and goods covers", "Tent bodies", "Industrial bags", "Machine covers"],
     images: [
       "/products/heavy-canvas-1.png",
-      "/products/heavy-canvas-v2-1.png",
-      "/products/heavy-canvas-v3-1.png",
       "/products/heavy-canvas-v4-1.png",
       "/products/heavy-canvas-v5-1.png",
       "/products/heavy-canvas-v6-1.png",
@@ -59,34 +57,6 @@ export const products: Product[] = [
       "/products/heavy-canvas-v10-1.png",
     ],
     swatch: { warp: "#C9BCA0", weft: "#B3A588", density: 26 },
-  },
-  {
-    slug: "multiple-ply-yarn",
-    name: "Multiple Yarn",
-    family: "Yarn",
-    availability: "in-production",
-    summary:
-      "Two-, three- and multi-ply twisted yarn supplied on cones for weaving, stitching and rope work.",
-    body: [
-      "The twisting department runs at 60,000 to 70,000 kg a month. A share feeds our own looms; the balance is sold to weavers, stitchers and rope makers who need a dependable ply yarn without complications.",
-      "Count, ply and twist direction are set to order. Send a sample or a specification and we will match it.",
-    ],
-    specs: [
-      { label: "Ply", value: "2-ply, 3-ply and multi-ply" },
-      { label: "Count range", value: "Quoted to buyer specification" },
-      { label: "Twist", value: "S or Z, TPM to order" },
-      { label: "Monthly capacity", value: "60,000 – 70,000 kg" },
-      { label: "Packing", value: "Cones, in cartons or bags" },
-      { label: "Lead time", value: "15 – 25 days" },
-    ],
-    applications: ["Industrial weaving", "Heavy stitching thread", "Rope and cordage", "Webbing"],
-    images: [
-      "/products/multiple-ply-yarn-1.png",
-      "/products/multiple-ply-yarn-2.png",
-      "/products/multiple-ply-yarn-3.png",
-      "/products/multiple-ply-yarn-4.png",
-    ],
-    swatch: { warp: "#E0D6BE", weft: "#CBBE9F", density: 18 },
   },
   {
     slug: "heavy-duty-tarpaulin",
@@ -109,11 +79,11 @@ export const products: Product[] = [
     ],
     applications: ["Truck and trailer covers", "Grain and cement stacking", "Site sheeting", "Temporary roofing"],
     images: [
-      "/products/heavy-duty-tarpaulin-1.png",
-      "/products/heavy-canvas-tarpaulin-1.png",
-      "/products/reinforced-grid-tarpaulin-1.png",
-      "/products/tarpaulin-multi-color-swatch-1.png",
-      "/products/tarpaulin-textured-grid-weave-1.png",
+      "/products/tarpaulin-1.png",
+      "/products/tarpaulin-2.png",
+      "/products/tarpaulin-3.png",
+      "/products/tarpaulin-4.png",
+      "/products/tarpaulin-5.png",
     ],
     swatch: { warp: "#4A6B52", weft: "#354E3A", density: 30 },
   },
@@ -171,14 +141,14 @@ export const products: Product[] = [
     swatch: { warp: "#596652", weft: "#3F4A38", density: 31 },
   },
   {
-    slug: "fire-proof-canvas",
-    name: "Fire Proof Canvas",
+    slug: "fire-retardant-canvas",
+    name: "Fire Retardant",
     family: "Cloth",
     availability: "in-production",
     summary:
       "Specialized flame-retardant heavy canvas engineered to withstand high temperatures and prevent spark propagation.",
     body: [
-      "Fire Proof Canvas is treated and woven specifically for industrial welding curtains, foundry covers, and high-heat safety environments where flame retardancy is mandatory.",
+      "Fire Retardant canvas is treated and woven specifically for industrial welding curtains, foundry covers, and high-heat safety environments where flame retardancy is mandatory.",
       "Maintains its structural integrity and multi-ply warp strength under extreme thermal exposure.",
     ],
     specs: [
@@ -190,10 +160,7 @@ export const products: Product[] = [
     ],
     applications: ["Welding blankets and curtains", "Foundry protective barriers", "Industrial fire safety covers"],
     images: [
-      "/products/heavy-canvas-v8-1.png",
-      "/products/heavy-canvas-v8-2.png",
-      "/products/heavy-canvas-v8-3.png",
-      "/products/heavy-canvas-v8-4.png",
+      "/products/fire-retardant.png",
     ],
     swatch: { warp: "#8C4A4A", weft: "#6B3535", density: 32 },
   },
@@ -222,32 +189,6 @@ export const products: Product[] = [
       "/products/tents-4.png",
     ],
     swatch: { warp: "#CFC3A6", weft: "#A79877", density: 22 },
-  },
-  {
-    slug: "canvas-tota-bags",
-    name: "Canvas Tota Bag",
-    family: "Finished goods",
-    availability: "in-production",
-    summary:
-      "Premium crafted canvas tote and utility bags featuring vibrant multi-color panels, structural prints, and robust handles.",
-    body: [
-      "Stitched directly from our in-house canvas weaves, these tote bags combine high load-bearing capacity with aesthetic versatility.",
-      "Available in customized color blocking, printed floral motifs, striped patterns, and drawstring variants tailored for retail and corporate buyers.",
-    ],
-    specs: [
-      { label: "Material", value: "In-house cotton canvas / duck weave" },
-      { label: "Varieties", value: "Color-blocked, printed floral, striped & drawstring bags" },
-      { label: "Handles", value: "Reinforced cotton webbing straps" },
-      { label: "Lead time", value: "15 – 25 days" },
-    ],
-    applications: ["Retail shopping & lifestyle", "Corporate gifting", "Exhibitions and promotional events"],
-    images: [
-      "/products/canvas-tota-bags-1.png",
-      "/products/canvas-tota-bags-2.png",
-      "/products/canvas-tota-bags-3.png",
-      "/products/canvas-tota-bags-4.png",
-    ],
-    swatch: { warp: "#D4C7B0", weft: "#A38F75", density: 28 },
   },
   {
     slug: "filter-cloth",
@@ -279,6 +220,60 @@ export const products: Product[] = [
       "/products/filter-cloth.png",
     ],
     swatch: { warp: "#D2C9B4", weft: "#9EA492", density: 44 },
+  },
+  {
+    slug: "canvas-tota-bags",
+    name: "Canvas Tota Bag",
+    family: "Finished goods",
+    availability: "in-production",
+    summary:
+      "Premium crafted canvas tote and utility bags featuring vibrant multi-color panels, structural prints, and robust handles.",
+    body: [
+      "Stitched directly from our in-house canvas weaves, these tote bags combine high load-bearing capacity with aesthetic versatility.",
+      "Available in customized color blocking, printed floral motifs, striped patterns, and drawstring variants tailored for retail and corporate buyers.",
+    ],
+    specs: [
+      { label: "Material", value: "In-house cotton canvas / duck weave" },
+      { label: "Varieties", value: "Color-blocked, printed floral, striped & drawstring bags" },
+      { label: "Handles", value: "Reinforced cotton webbing straps" },
+      { label: "Lead time", value: "15 – 25 days" },
+    ],
+    applications: ["Retail shopping & lifestyle", "Corporate gifting", "Exhibitions and promotional events"],
+    images: [
+      "/products/canvas-tota-bags-1.png",
+      "/products/canvas-tota-bags-2.png",
+      "/products/canvas-tota-bags-3.png",
+      "/products/canvas-tota-bags-4.png",
+    ],
+    swatch: { warp: "#D4C7B0", weft: "#A38F75", density: 28 },
+  },
+  {
+    slug: "multiple-ply-yarn",
+    name: "Multiple Yarn",
+    family: "Yarn",
+    availability: "in-production",
+    summary:
+      "Two-, three- and multi-ply twisted yarn supplied on cones for weaving, stitching and rope work.",
+    body: [
+      "The twisting department runs at 60,000 to 70,000 kg a month. A share feeds our own looms; the balance is sold to weavers, stitchers and rope makers who need a dependable ply yarn without complications.",
+      "Count, ply and twist direction are set to order. Send a sample or a specification and we will match it.",
+    ],
+    specs: [
+      { label: "Ply", value: "2-ply, 3-ply and multi-ply" },
+      { label: "Count range", value: "Quoted to buyer specification" },
+      { label: "Twist", value: "S or Z, TPM to order" },
+      { label: "Monthly capacity", value: "60,000 – 70,000 kg" },
+      { label: "Packing", value: "Cones, in cartons or bags" },
+      { label: "Lead time", value: "15 – 25 days" },
+    ],
+    applications: ["Industrial weaving", "Heavy stitching thread", "Rope and cordage", "Webbing"],
+    images: [
+      "/products/multiple-ply-yarn-1.png",
+      "/products/multiple-ply-yarn-2.png",
+      "/products/multiple-ply-yarn-3.png",
+      "/products/multiple-ply-yarn-4.png",
+    ],
+    swatch: { warp: "#E0D6BE", weft: "#CBBE9F", density: 18 },
   },
 ];
 
