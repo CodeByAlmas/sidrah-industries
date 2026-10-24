@@ -34,10 +34,10 @@ export const site = {
   },
 
   /** Digits only, country code first. No +, no spaces. */
-  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "919336041131",
-  phoneDisplay: process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? "+91 9336041131",
-  email: process.env.NEXT_PUBLIC_EMAIL ?? "info@sidrahindustries.com",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sidrahindustries.com",
+  whatsappNumber: "919336041131",
+  phoneDisplay: "+91 9336041131",
+  email: "info@sidrahindustries.com",
+  siteUrl: "https://www.sidrahindustries.com",
 
   /** Shown on the home page as the production capability strip. Source: company profile. */
   capacity: {
