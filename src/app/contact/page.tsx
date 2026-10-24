@@ -46,7 +46,19 @@ export default function ContactPage() {
           {rows.map(([label, value]) => (
             <div key={label} className="dl">
               <dt className="data mute">{label}</dt>
-              <dd className="text-[.93rem]">{value}</dd>
+              <dd className="text-[.93rem] font-medium">
+                {label === "WhatsApp & phone" ? (
+                  <a href={`tel:${site.whatsappNumber}`} className="hover:text-[var(--color-indigo)] transition-colors underline underline-offset-4 font-mono">
+                    {value}
+                  </a>
+                ) : label === "Email" ? (
+                  <a href={`mailto:${site.email}`} className="hover:text-[var(--color-indigo)] transition-colors underline underline-offset-4 font-mono">
+                    {value}
+                  </a>
+                ) : (
+                  value
+                )}
+              </dd>
             </div>
           ))}
         </dl>
