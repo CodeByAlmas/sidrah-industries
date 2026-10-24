@@ -102,7 +102,15 @@ export function Footer() {
           className="mt-14 flex flex-wrap items-center justify-between gap-4 pt-6 text-xs text-neutral-400"
           style={{ borderTop: "1px solid rgba(240,235,222,.1)" }}
         >
-          <p className="mono">© {new Date().getFullYear()} {site.legalName}. All rights reserved.</p>
+          <div className="flex flex-wrap items-center gap-6">
+            <p className="mono">© {new Date().getFullYear()} {site.legalName}. All rights reserved.</p>
+            <Link href="/privacy" className={`${U} text-neutral-400 hover:text-white transition-colors`}>
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className={`${U} text-neutral-400 hover:text-white transition-colors`}>
+              Terms & Conditions
+            </Link>
+          </div>
           <p className="mono text-amber-400/80 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">Export enquiries welcome worldwide</p>
         </div>
       </div>

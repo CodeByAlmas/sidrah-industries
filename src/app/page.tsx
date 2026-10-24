@@ -102,7 +102,7 @@ const InteractiveVideoCard = ({ src, title, caption }: { src: string; title: str
         onClick={() => setShowVideoPopOver(true)}
       >
         <div 
-          className="relative aspect-video w-full overflow-hidden bg-ink-2"
+          className="relative aspect-video w-full overflow-hidden bg-ink-2 rounded-xl shadow-lg"
           style={{ border: "1px solid var(--rule)" }}
         >
           <motion.div
@@ -247,6 +247,26 @@ export default function HomePage() {
           </p>
           <div className="mt-11">
             <CatalogueGrid />
+          </div>
+        </div>
+      </section>
+
+      {/* ── Factory Floor Highlight Banner (Added for Factory Look on Homepage) ── */}
+      <section className="band bg-[#07090b] text-white py-16 relative overflow-hidden">
+        <div className="shell grid gap-8 lg:grid-cols-2 items-center">
+          <div>
+            <span className="mono text-xs uppercase tracking-widest text-amber-400">Magarwara & Unnao Facility</span>
+            <h2 className="h2 text-3xl font-display font-bold mt-2">Engineered under one roof</h2>
+            <p className="text-gray-300 text-sm mt-4 leading-relaxed">
+              From raw cotton cone winding and multi-ply TFO twisting to Nova Pignone rapier looms and advanced coating lines, our integrated unit ensures uncompromising strength.
+            </p>
+            <div className="mt-6">
+              <ButtonLink href="/infrastructure" label="Explore full unit workflow" variant="ind" external cursor="Unit" />
+            </div>
+          </div>
+          <div className="relative aspect-video rounded-xl overflow-hidden border border-neutral-800 shadow-2xl">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/factory/floor.jpg" alt="Sidrah Industries Factory Floor" className="h-full w-full object-cover transform hover:scale-105 transition-transform duration-700" />
           </div>
         </div>
       </section>

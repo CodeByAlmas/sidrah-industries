@@ -247,6 +247,28 @@ export default function InfrastructurePage() {
       <div className="shell band" style={{ paddingTop: "7.5rem", paddingBottom: "3rem" }}>
         <p className="mono fade mb-4 tracking-widest text-[var(--color-indigo)]">INSIDE THE UNIT & PRODUCTION WORKFLOW</p>
         
+        <h1 className="h1 max-w-[22ch] mb-8">
+          <span className="mask"><span>Our Manufacturing</span></span>
+          <span className="mask"><span>Plant & Facility.</span></span>
+        </h1>
+
+        {/* Added Factory Showcase Banner Image */}
+        <div className="relative w-full aspect-[21/9] overflow-hidden rounded-2xl bg-neutral-900 mb-12 shadow-2xl" style={{ border: "1px solid var(--rule)" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img 
+            src="/factory/floor.jpg" 
+            alt="Sidrah Industries Manufacturing Plant Floor in Magarwara Unnao" 
+            className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 md:p-10">
+            <div>
+              <span className="mono text-xs uppercase tracking-widest text-amber-400">Magarwara, Unnao · Uttar Pradesh</span>
+              <p className="text-white font-display text-xl md:text-2xl font-bold mt-1">State-of-the-art weaving and twisting infrastructure</p>
+            </div>
+          </div>
+        </div>
+
         <div className="border-t border-[var(--color-ink)] pt-6 mt-4">
           <p className="text-xs font-mono uppercase tracking-widest text-neutral-500 mb-6">Click any production stage below to expand its floor media:</p>
           <div className="flex flex-col gap-4">

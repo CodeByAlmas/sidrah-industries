@@ -28,25 +28,28 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
       </div>
 
       <div className="shell grid items-start gap-10 pb-16 pt-10 lg:grid-cols-[1.1fr_.9fr] lg:gap-16">
-        {/* Left Side: Interactive Gallery Layout */}
+        {/* Left Side: Dynamic Dimension Adaptive Gallery Layout */}
         <div className="space-y-4">
-          <div className="relative aspect-4/5 overflow-hidden bg-ink-2 shadow-lg" style={{ border: "1px solid var(--rule)" }}>
+          <div className="relative w-full overflow-hidden bg-neutral-950 shadow-lg flex items-center justify-center p-4 rounded-xl" style={{ border: "1px solid var(--rule)" }}>
             {displayImages[activeImageIndex] ? (
-              <Image 
-                src={displayImages[activeImageIndex]} 
-                alt={`${product.name} preview ${activeImageIndex + 1}`} 
-                fill 
-                priority 
-                sizes="(max-width:1024px) 100vw, 55vw" 
-                className="object-cover transition-all duration-500 ease-out hover:scale-105" 
-              />
+              <div className="relative w-full flex items-center justify-center">
+                <Image 
+                  src={displayImages[activeImageIndex]} 
+                  alt={`${product.name} preview ${activeImageIndex + 1}`} 
+                  width={1000}
+                  height={1000}
+                  priority 
+                  sizes="(max-width:1024px) 100vw, 55vw" 
+                  className="h-auto w-auto max-h-[550px] object-contain transition-all duration-500 ease-out hover:scale-[1.02]" 
+                />
+              </div>
             ) : (
-              <>
+              <div className="relative aspect-4/5 w-full">
                 <WeaveSwatch warp={product.swatch.warp} weft={product.swatch.weft} density={product.swatch.density} className="h-full w-full" />
                 <span className="stamp">Weave illustration · photography to follow</span>
-              </>
+              </div>
             )}
-            <div className="absolute top-4 left-4 z-10 bg-ink/75 backdrop-blur-md px-3 py-1 text-[.7rem] mono text-cloth-3 border border-cloth-3/20">
+            <div className="absolute top-4 left-4 z-10 bg-ink/75 backdrop-blur-md px-3 py-1 text-[.7rem] mono text-cloth-3 border border-cloth-3/20 rounded-md">
               {displayImages.length > 0 ? `FACTORY LIVE VIEW · ${activeImageIndex + 1} / ${displayImages.length}` : "WEAVE SWATCH"}
             </div>
           </div>
@@ -58,7 +61,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                   key={idx}
                   type="button"
                   onClick={() => setActiveImageIndex(idx)}
-                  className={`relative aspect-square overflow-hidden bg-ink-2 text-left cursor-pointer group transition-all duration-300 ${
+                  className={`relative aspect-square overflow-hidden bg-neutral-900 text-left cursor-pointer group transition-all duration-300 rounded-lg ${
                     activeImageIndex === idx ? "ring-2 ring-[var(--color-indigo)] scale-[0.98]" : "opacity-75 hover:opacity-100"
                   }`}
                   style={{ border: "1px solid var(--rule)" }}
@@ -68,7 +71,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                     alt={`${product.name} thumbnail ${idx + 1}`} 
                     fill 
                     sizes="(max-width:768px) 25vw, 15vw" 
-                    className="object-cover transition-transform duration-300 group-hover:scale-105" 
+                    className="object-contain p-2 transition-transform duration-300 group-hover:scale-105" 
                   />
                   <div className={`absolute inset-0 transition-colors ${activeImageIndex === idx ? "bg-indigo-950/10" : "bg-black/10 group-hover:bg-transparent"}`} />
                 </button>
